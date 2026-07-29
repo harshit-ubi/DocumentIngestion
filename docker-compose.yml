@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: pgvector/pgvector:pg16
@@ -18,6 +16,24 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  app:
+    build: .
+    container_name: document_ingestion_app
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgrespassword@postgres:5432/document_ingestion_db
+      SYNC_DATABASE_URL: postgresql+psycopg2://postgres:postgrespassword@postgres:5432/document_ingestion_db
+      AWS_REGION: ap-south-1
+      BEDROCK_EMBEDDING_MODEL_ID: amazon.titan-embed-text-v1
+      DEFAULT_VECTOR_STORE: pgvector
+      ENVIRONMENT: production
+      DEBUG: "False"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   pgdata:
