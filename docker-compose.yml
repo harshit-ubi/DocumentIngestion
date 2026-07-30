@@ -27,7 +27,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://postgres:postgrespassword@postgres:5432/document_ingestion_db
       SYNC_DATABASE_URL: postgresql+psycopg2://postgres:postgrespassword@postgres:5432/document_ingestion_db
       AWS_REGION: ap-south-1
-      BEDROCK_EMBEDDING_MODEL_ID: amazon.titan-embed-text-v1
+      BEDROCK_EMBEDDING_MODEL_ID: amazon.titan-embed-text-v2:0
       DEFAULT_VECTOR_STORE: pgvector
       ENVIRONMENT: production
       DEBUG: "False"

@@ -64,7 +64,7 @@ class DocumentChunkModel(Base):
     )
     chunk_index = Column(Integer, nullable=False)
     chunk_text = Column(Text, nullable=False)
-    embedding = Column(Vector(1536), nullable=False)
+    embedding = Column(Vector(1024), nullable=False)
     created_at = Column(
         DateTime(timezone=True),
         nullable=False,

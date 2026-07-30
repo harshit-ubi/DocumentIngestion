@@ -37,7 +37,7 @@ class BedrockEmbeddingAdapter(EmbeddingProviderInterface):
 
         for index, chunk in enumerate(text_chunks):
             try:
-                body = json.dumps({"inputText": chunk})
+                body = json.dumps({"inputText": chunk, "dimensions": 1024})
                 response = self.client.invoke_model(
                     body=body,
                     modelId=self.model_id,
